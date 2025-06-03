@@ -1,18 +1,19 @@
-// components/MovieForm.jsx
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useSaveData } from '../hooks/useSaveData';
 import "./MovieForm.css";
 
-function MovieForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+function MovieForm({ onAddMovie }) {  // Recibir la función onAddMovie como prop
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const saveData = useSaveData();
 
   const onSubmit = async (data) => {
     const response = await saveData(data);
     if (response.success) {
       toast.success('Película agregada correctamente!');
+      reset();  // Resetea el formulario
+      onAddMovie();  // Llama la función para redirigir después de agregar la película
     } else {
       toast.error('Hubo un error al agregar la película.');
     }
