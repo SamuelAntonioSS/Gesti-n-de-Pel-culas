@@ -1,23 +1,48 @@
 // pages/WelcomePage.jsx
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Hook de navegación
+import { useNavigate } from 'react-router-dom';
 
 function WelcomePage() {
   const navigate = useNavigate();
 
-  // Redirigir automáticamente después de unos segundos
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/home'); // Redirige a la pantalla de inicio
-    }, 3000); // Redirige después de 3 segundos
-    return () => clearTimeout(timer); // Limpiar el timer al desmontar el componente
+      navigate('/home');
+    }, 3000);
+    return () => clearTimeout(timer);
   }, [navigate]);
 
+  const containerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    textAlign: 'center',
+    padding: '20px',
+    background: 'linear-gradient(to right, #4facfe, #00f2fe)', // Degradado azul claro a celeste
+    color: 'white',
+  };
+
+  const buttonStyle = {
+    marginTop: '20px',
+    padding: '10px 20px',
+    fontSize: '16px',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)', // Botón translúcido
+    color: '#fff',
+    border: '1px solid white',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    transition: 'background 0.3s ease',
+  };
+
   return (
-    <div className="welcome-container">
+    <div style={containerStyle}>
       <h2>Bienvenido a la Gestión de Películas</h2>
       <p>Serás redirigido a la pantalla principal en unos segundos...</p>
-      <button onClick={() => navigate('/home')}>Ir al Inicio</button>
+      <button style={buttonStyle} onClick={() => navigate('/home')}>
+        Ir al Inicio
+      </button>
     </div>
   );
 }

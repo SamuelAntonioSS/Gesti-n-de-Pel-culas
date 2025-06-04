@@ -1,4 +1,3 @@
-// components/DeleteButton.jsx
 import React from 'react';
 
 function DeleteButton({ onDelete, movieId }) {
